@@ -5,9 +5,9 @@ import { db } from "@/firebase/admin";
 
 
 export async function POST(request: Request) {
-  const { type, role, level, techStack, amount, userId } = await request.json();
+  const { type, role, level, techStack, amount, userid } = await request.json();
    
-    if (!userId) {
+    if (!userid) {
     return Response.json(
       { success: false, error: "Missing userId in request body" },
       { status: 400 }
@@ -36,7 +36,7 @@ export async function POST(request: Request) {
       level,
       techStack: techStack.split(","),
       questions: JSON.parse(questions),
-      userId,
+      userid,
       finalized: true,
       coverImage: getRandomInterviewCover(),
       createdAt: new Date().toISOString(),
